@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>App Download Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="{% static 'appserver/js/download.js' %}"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form id="downloadForm" action="/appdistribution/showapps" method="GET">
+                            <input type="hidden" name="platform" id="platform" value="{{ selectedPlatform }}"/>
+                            <input type="hidden" name="product" id="product" value="{{ selectedProduct }}"/>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Platform</span>
+                                        <div class="dropdown">
+                                            <button id="platformbtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ selectedPlatform }} <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                {% for platform in platforms %}
+                                                <li><a onclick="refreshPage('platform', '{{ platform }}')">{{ platform }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <span class="input-group-addon">Product</span>
+                                         <div class="dropdown">
+                                            <button id="productbtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ selectedProduct }} <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                {% for product in products %}
+                                                <li><a onclick="refreshPage('product', '{{ product }}')">{{ product }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <a href="{% url 'appdistribution:settings' %}" class="pull-right" style="margin-top: 5px">Settings >></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-body">
+                          <div class="input-group">
+                            <span class="input-group-addon">Search</i></span>
+                            <input id="appname" type="text" class="form-control" name="appname" placeholder="app name">
+                          </div>
+                        <table id="appNameTable" class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>APP NAME</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for data in appsData %}
+                              <tr>
+                                <td>
+                                    <table class="table-striped" style="width: 100%">
+                                       <tbody>
+                                          <tr data-toggle="collapse" data-target="[name='{{data.fileName}}']" style="cursor: pointer;">
+                                              <td>{{data.fileName}}</td>
+                                          </tr>
+                                          <tr name="{{data.fileName}}" class="collapse">
+                                              <td>
+                                                  <span class="label label-default"> Build Date: {{data.buildTime}}</span>
+                                                  {% if selectedPlatform == "ios" and isMobile %}
+                                                    <a class="btn glyphicon glyphicon-download" role="button" href="itms-services://?action=download-manifest&url=https://30.100.25.52:8002/appdistribution/decode/{{selectedPlatform}}/{{selectedProduct}}/{{data.plistPath}}"></a>
+                                                  {% else %}
+                                                    <a class="btn glyphicon glyphicon-download" role="button" href="{% url 'appdistribution:download' %}?filename={{data.filePath}}"></a>
+                                                  {% endif %}
+                                              </td>
+                                          </tr>
+                                    </table>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="btn btn-primary" href="{% url 'appdistribution:upload' %}" role="button">Upload Apps</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

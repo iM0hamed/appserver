@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Settings Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--include jQuery Validation Plugin-->
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="{% static 'appserver/js/settings.js' %}"></script>
+</head>
+<body>
+    <div class="container" style='margin: auto;max-width:500px'>
+        <h2>Add Product</h2>
+        <hr>
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#android">Android</a></li>
+          <li><a data-toggle="tab" href="#ios">iOS</a></li>
+        </ul>
+        <div class="tab-content" style="margin-bottom: 10px">
+          <div id="android" class="tab-pane fade in active">
+            <h4>Add Android Product</h4>
+            <form id="addAndroidProduct" enctype="multipart/form-data" action="/appdistribution/settings" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="platform" value="android"/>
+              <div class="input-group">
+                  <span class="input-group-addon">PRODUCT</span>
+                  <input class="form-control" type="text" name="product"/>
+              </div>
+              <hr>
+              <input class="form-control" type="submit" value="Add" />
+            </form>
+          </div>
+          <div id="ios" class="tab-pane fade">
+            <h4>Add iOS Product</h4>
+             <form id="uploadFileFormiOS" enctype="multipart/form-data" action="/appdistribution/settings" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="platform" value="ios"/>
+              <div class="input-group">
+                  <span class="input-group-addon">PRODUCT</span>
+                  <input class="form-control" type="text" name="product"/>
+              </div>
+              <div class="input-group">
+                  <span class="input-group-addon">BUNDLE ID</span>
+                  <input class="form-control" type="text" name="bundleid"/>
+              </div>
+              <div class="input-group">
+                  <span class="input-group-addon">DISPLAY-IMAGE</span>
+                  <input class="form-control" type="text" name="displayimage"/>
+              </div>
+               <div class="input-group">
+                  <span class="input-group-addon">FULL-SIZE-IMAGE</span>
+                  <input class="form-control" type="text" name="fullsizeimage"/>
+              </div>
+              <hr>
+              <input class="form-control" type="submit" value="Add" />
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-6">
+             <a href="{% url 'appdistribution:showapps' %}" style="margin-top: 5px"><< Download</a>
+         </div>
+         <div class="col-sm-6">
+             <a href="{% url 'appdistribution:upload' %}" class="pull-right" style="margin-top: 5px">Upload >></a>
+         </div>
+    </div>
+</body>
+<script>
+    var message = '{{message}}';
+    if(message != "") {
+        alert('{{message}}')
+    }
+</script>
+</html>

@@ -1,0 +1,11 @@
+version: "2.2"
+services:
+  qatool:
+    build: .
+    image: qatool/appsever:1.0
+    network_mode: bridge
+   volumes:
+     - ./appdistribution/app:/app/appdistribution/app
+    ports:
+      - "8000:8000"
+    command: python3 manage.py runserver 0.0.0.0:8000
