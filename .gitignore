@@ -3,3 +3,5 @@ appdistribution/app/*
 */*/__pycache__/*
 config.json
 .vscode/*
+*.crt
+*.key

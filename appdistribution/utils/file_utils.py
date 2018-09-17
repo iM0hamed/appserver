@@ -79,7 +79,7 @@ def generate_plist(file_path, file_name):
             display_image = app['displayimage']
             full_size_image = app['fullsizeimage']
 
-    with open('appdistribution/app/ios/manifest.plist', 'r') as ipa_file:
+    with open('appdistribution/manifest-template.plist', 'r') as ipa_file:
         data = ipa_file.read() \
             .replace('{{@bundle-identifier}}', bundle_id) \
             .replace('{{@title}}', product) \
