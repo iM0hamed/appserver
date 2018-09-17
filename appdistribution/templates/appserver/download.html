@@ -73,7 +73,7 @@
                                               <td>
                                                   <span class="label label-default"> Build Date: {{data.buildTime}}</span>
                                                   {% if selectedPlatform == "ios" and isMobile %}
-                                                    <a class="btn glyphicon glyphicon-download" role="button" href="itms-services://?action=download-manifest&url=https://30.100.25.52:8002/appdistribution/decode/{{selectedPlatform}}/{{selectedProduct}}/{{data.plistPath}}"></a>
+                                                    <a class="btn glyphicon glyphicon-download" role="button" href="itms-services://?action=download-manifest&url={{host}}/appdistribution/decode/ios/{{selectedProduct}}/{{data.plistPath}}"></a>
                                                   {% else %}
                                                     <a class="btn glyphicon glyphicon-download" role="button" href="{% url 'appdistribution:download' %}?filename={{data.filePath}}"></a>
                                                   {% endif %}

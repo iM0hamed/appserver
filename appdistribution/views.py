@@ -3,7 +3,7 @@ import os
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, redirect
 import appdistribution.utils.file_utils as util
-
+import appdistribution.settings as constant
 
 def index(request):
     return render(request, 'appserver/index.html', {'data': ['hello django!']})
@@ -84,12 +84,14 @@ def show_apps(request):
 
     app_data = util.get_app_files(platform, product)
 
-    response_data = {'platforms': config["platforms"],
-                         'isMobile': is_mobile,
-                         'products': config['products'],
-                         'selectedPlatform': platform,
-                         'selectedProduct': product,
-                         'appsData': app_data}
+    response_data = {
+        'host': constant.SERVER_ADDRESS,
+        'platforms': config["platforms"],
+        'isMobile': is_mobile,
+        'products': config['products'],
+        'selectedPlatform': platform,
+        'selectedProduct': product,
+        'appsData': app_data}
 
     # print(response_data)
     return render(request, 'appserver/download.html', response_data)

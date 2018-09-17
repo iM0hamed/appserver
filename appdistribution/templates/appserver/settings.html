@@ -60,12 +60,14 @@
             </form>
           </div>
         </div>
-        <div class="col-sm-6">
-             <a href="{% url 'appdistribution:showapps' %}" style="margin-top: 5px"><< Download</a>
-         </div>
-         <div class="col-sm-6">
-             <a href="{% url 'appdistribution:upload' %}" class="pull-right" style="margin-top: 5px">Upload >></a>
-         </div>
+        <div>
+            <div style="float:left">
+                <a href="{% url 'appdistribution:showapps' %}"><< Download</a>
+            </div>
+            <div style="float:right">
+                <a href="{% url 'appdistribution:upload' %}" class="pull-right">Upload >></a>
+            </div>
+        </div>
     </div>
 </body>
 <script>
