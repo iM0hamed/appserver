@@ -9,7 +9,7 @@ pipenv install
 
 ## Run appserver(host http server at 8000 and https server at 8001)
 ```
-python3 manage.py runserver 0:8000 & python3 manage.py runsslserver 0:8000 --certificate rootCA.crt --key rootCA.key
+python3 manage.py runserver 0:8000 & python3 manage.py runsslserver 0:8001 --certificate rootCA.crt --key rootCA.key
 ```
 
 You can download **certificate**/apk at http://your-ip:8000 and download apk/**ipa** at https://your-ip:8001
