@@ -13,3 +13,9 @@ python3 manage.py runserver 0:8000 & python3 manage.py runsslserver 0:8000 --cer
 ```
 
 You can download **certificate**/apk at http://your-ip:8000 and download apk/**ipa** at https://your-ip:8001
+
+
+## Preview
+| Index Page  | Settings Page | Upload Page  | Download Page |
+| ------------- | ------------- | ------------- | ------------- |
+| <img src="https://github.com/rayzhouzhj/appserver/blob/master/appdistribution/static/appserver/images/index_page.png" width="200" height="200"/>  | <img src="https://github.com/rayzhouzhj/appserver/blob/master/appdistribution/static/appserver/images/settings_page.png" width="200" height="200"/>  | <img src="https://github.com/rayzhouzhj/appserver/blob/master/appdistribution/static/appserver/images/upload_page.png" width="200" height="200"/> | <img src="https://github.com/rayzhouzhj/appserver/blob/master/appdistribution/static/appserver/images/download_page.png" width="200" height="200"/>|
