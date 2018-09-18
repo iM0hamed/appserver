@@ -23,6 +23,10 @@ def settings(request):
         product = request.POST['product']
         data = {}
 
+        # Create app folder
+        if not os.path.exists('appdistribution/app/' + platform + '/' + product):
+            os.mkdir('appdistribution/app/' + platform + '/' + product)
+
         if platform == 'android':
             data = {"platform": platform, "product": product}
         elif platform == 'ios':
