@@ -79,15 +79,14 @@ def generate_plist(file_path, file_name):
             display_image = app['displayimage']
             full_size_image = app['fullsizeimage']
 
-    with open('appdistribution/manifest-template.plist', 'r') as ipa_file:
-        data = ipa_file.read() \
+    with open('appdistribution/manifest-template.plist', 'r') as default_plist_file:
+        data = default_plist_file.read() \
             .replace('{{@bundle-identifier}}', bundle_id) \
             .replace('{{@title}}', product) \
             .replace('{{@displayimage}}', display_image) \
             .replace('{{@fullsizeimage}}', full_size_image) \
             .replace('{{@url}}',
-                     constant.SERVER_ADDRESS + '/appdistribution/download?filename='
-                     + ipa_file)
+                     constant.SERVER_ADDRESS + '/appdistribution/download?filename=' + ipa_file)
 
         f = open(file_path + "/" + file_name, "w")
         f.write(data)
