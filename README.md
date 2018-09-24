@@ -1,5 +1,8 @@
 # appserver
 
+By user **appserver**, you can download and install apk file to android device and ipa file to iOS device without connecting to your mackbook. Just use upload page to upload(or send file via post request to appserver after CI), then you can download and install you new app anywhere.
+
+## Generate certificate
 Follow this guide to generate self signed certificate: [self-signed-certificate-with-custom-ca.md](https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309)
 
 ## Installing appserver
